@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>C-23 Curriculum - DMPC</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar Layout Styling */
+        .sidebar {
+            width: 250px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+            padding: 40px 20px;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 5px 0 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .sidebar h2 {
+            margin-bottom: 40px;
+            font-weight: 700;
+            text-align: center;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #ff9a9e, #fecfef);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 12px rgba(255, 154, 158, 0.2);
+        }
+
+        .sidebar a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            margin: 10px 0;
+            font-weight: 500;
+            padding: 12px 20px;
+            border-radius: 14px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .sidebar a:hover {
+            background: linear-gradient(135deg, rgba(255, 154, 158, 0.15), rgba(254, 207, 239, 0.05));
+            color: #ff9a9e;
+            padding-left: 25px;
+        }
+
+        /* Main Content Layout Wrapper */
+        .main-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            padding: 30px;
+        }
+
+        /* Top Right Action Button Styling */
+        .btn-view-curriculum {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            color: #2c3e50;
+            padding: 12px 24px;
+            border-radius: 16px;
+            border: none;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(255, 154, 158, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            z-index: 10;
+        }
+
+        .btn-view-curriculum:hover {
+            background: linear-gradient(135deg, #fff, #ff9a9e);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 154, 158, 0.5);
+        }
+
+        .main {
+            flex: 1;
+            padding: 60px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .welcome {
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .welcome h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            background: linear-gradient(to right, #fff, #ff9a9e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 15px rgba(255, 154, 158, 0.2);
+        }
+
+        .welcome p {
+            font-size: 1.1rem;
+            color: #a1c4fd;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+
+        /* Semesters Grid Container */
+        .modules {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        .module {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 45px 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .module:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 154, 158, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 154, 158, 0.15);
+            background: rgba(255, 154, 158, 0.05);
+        }
+
+        .module h2 {
+            margin-bottom: 25px;
+            font-weight: 700;
+            font-size: 1.7rem;
+            letter-spacing: 0.5px;
+        }
+
+        .module button {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            color: #2c3e50;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 154, 158, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .module:hover button {
+            background: linear-gradient(135deg, #fff, #ff9a9e);
+            box-shadow: 0 6px 20px rgba(255, 154, 158, 0.5);
+            transform: scale(1.05);
+        }
+
+        /* Danger/Logout Button Styling */
+        .logout-btn {
+            margin-top: auto;
+            padding: 14px 0;
+            background: rgba(255, 111, 111, 0.15);
+            border: 1px solid rgba(255, 111, 111, 0.3);
+            border-radius: 16px;
+            color: #ff6f6f;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: #ff6f6f;
+            color: white;
+            box-shadow: 0 6px 20px rgba(255, 111, 111, 0.4);
+        }
+
+        /* Mobile Responsive View Optimization */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                overflow-x: auto;
+                padding: 15px 20px;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .sidebar h2 {
+                display: none;
+            }
+
+            .sidebar-links {
+                flex-direction: row;
+                gap: 10px;
+                width: auto !important;
+            }
+
+            .sidebar a {
+                margin: 0;
+                padding: 8px 15px;
+                font-size: 0.85rem;
+                white-space: nowrap;
+            }
+
+            .sidebar .logout-btn {
+                display: none;
+            }
+
+            .main-wrapper {
+                padding: 20px 15px;
+            }
+
+            .btn-view-curriculum {
+                position: static;
+                width: 100%;
+                margin-top: 10px;
+                justify-content: center;
+            }
+
+            .main {
+                padding: 20px 0;
+                justify-content: flex-start;
+            }
+
+            .welcome {
+                margin-top: 20px;
+                margin-bottom: 30px;
+            }
+
+            .welcome h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* --- Mobile View (Phones) --- */
+        @media (max-width: 600px) {
+
+            .admin-layout {
+                flex-direction: column;
+            }
+
+            .btn-upload {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Action Buttons Container */
+        .actions-container {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            display: flex;
+            gap: 15px;
+            z-index: 10;
+        }
+
+        .btn-action {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            color: #2c3e50;
+            padding: 12px 20px;
+            border-radius: 14px;
+            border: none;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 154, 158, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-action:hover {
+            transform: translateY(-3px);
+            background: linear-gradient(135deg, #fff, #ff9a9e);
+            box-shadow: 0 8px 25px rgba(255, 154, 158, 0.4);
+        }
+
+        /* --- Tablet View --- */
+        @media (min-width: 601px) and (max-width: 1024px) {}
+
+        /* --- Desktop View (Large Screens) --- */
+        @media (min-width: 1025px) {}
+    </style>
+</head>
+
+<body>
+    <nav class="sidebar">
+        <h2>DMPC</h2>
+        <div class="sidebar-links" style="width: 100%;">
+            <a href="user.html">🏠 Dashboard</a>
+            <a href="profile.html">👤 Profile</a>
+        </div>
+        <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+    </nav>
+
+    <div class="main-wrapper">
+        <div class="actions-container">
+            <button class="btn-action" onclick="downloadCurriculum()">📄 Curriculum</button>
+        </div>
+
+        <div class="main">
+            <div class="welcome">
+                <h1 id="schemeTitle">C-23 Scheme</h1>
+                <p>Select your semester to access materials</p>
+            </div>
+
+            <div class="modules">
+                <div class="module">
+                    <h2>1st Year</h2>
+                    <div style="margin-top: 15px;">
+                        <button onclick="navigateToMaterials('1year')">Get Started</button>
+                    </div>
+                </div>
+                <div class="module">
+                    <h2>3rd Sem</h2>
+                    <div style="margin-top: 15px;">
+                        <button onclick="navigateToMaterials('3sem')">Get Started</button>
+                    </div>
+                </div>
+                <div class="module">
+                    <h2>4th Sem</h2>
+                    <div style="margin-top: 15px;">
+                        <button onclick="navigateToMaterials('4sem')">Get Started</button>
+                    </div>
+                </div>
+                <div class="module">
+                    <h2>5th Sem</h2>
+                    <div style="margin-top: 15px;">
+                        <button onclick="navigateToMaterials('5sem')">Get Started</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        // Production Render API Web Service endpoint link configuration
+        const RENDER_BACKEND_URL = "https://diploma-backend-07kx.onrender.com";
+
+        // Helper to sanitize URL: If localhost exists, replace it with Production Render URL
+        function fixUrl(url) {
+            if (!url || typeof url !== 'string') return "#";
+            if (url.includes('localhost:5001')) {
+                return url.replace('http://localhost:5001', RENDER_BACKEND_URL);
+            }
+            return url;
+        }
+
+        // Returns the static identifier scheme key
+        function getSchemeName() {
+            return 'c23';
+        }
+
+        // Routes user to target dashboard with chosen semester parameters
+        function navigateToMaterials(sem) {
+            const scheme = getSchemeName();
+            window.location.href = `materials.html?scheme=${scheme}&sem=${sem}`;
+        }
+
+        // Connects with server endpoints to open dynamic syllabus download links
+        async function downloadCurriculum() {
+            const scheme = getSchemeName();
+            const branch = localStorage.getItem('userBranch') || 'CME';
+
+            try {
+                // Request resource mappings directly from cloud production environment
+                const response = await fetch(`${RENDER_BACKEND_URL}/get-curriculum?branch=${branch}&scheme=${scheme}`);
+
+                if (response.ok) {
+                    const data = await response.json();
+
+                    // Sanitize the URL before opening
+                    let finalUrl = fixUrl(data.url || data.file);
+
+                    if (finalUrl !== "#") {
+                        window.open(finalUrl, '_blank'); // Opens the PDF cleanly in a new tab
+                    } else {
+                        alert('Curriculum file not found for this scheme.');
+                    }
+                } else {
+                    alert('No Curriculum syllabus uploaded yet for this scheme!');
+                }
+            } catch (err) {
+                console.error('Fetch Curriculum Error:', err);
+                alert('Server connection failed while fetching curriculum.');
+            }
+        }
+
+        // Clears session context parameters and handles redirect to login
+        function logout() {
+            localStorage.clear();
+            window.location.href = 'login.html';
+        }
+
+    </script>
+</body>
+
+</html>

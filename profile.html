@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile - DMPC</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Profile Card Glassmorphism Container */
+        .profile-container {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 28px;
+            padding: 45px 35px;
+            max-width: 460px;
+            width: 100%;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-container:hover {
+            border-color: rgba(255, 154, 158, 0.2);
+        }
+
+        /* Avatar Styling with Glow */
+        .profile-avatar {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #ff9a9e;
+            margin: 0 auto 20px;
+            box-shadow: 0 8px 25px rgba(255, 154, 158, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            display: block;
+        }
+
+        .profile-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+            background: linear-gradient(135deg, #fff, #ff9a9e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .profile-email {
+            font-size: 0.95rem;
+            color: #a1c4fd;
+            margin-bottom: 35px;
+            font-weight: 500;
+        }
+
+        /* Info Display Blocks */
+        .info-group {
+            margin-bottom: 22px;
+        }
+
+        .info-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-align: left;
+            margin-bottom: 8px;
+            display: block;
+            color: #ff9a9e;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding-left: 4px;
+        }
+
+        .info-value {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 14px 18px;
+            border-radius: 16px;
+            text-align: left;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 500;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Button Styling */
+        button {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            color: #2c3e50;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 6px 20px rgba(255, 154, 158, 0.3);
+            margin-top: 15px;
+            width: 100%;
+            letter-spacing: 0.5px;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #fff, #ff9a9e);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 154, 158, 0.5);
+        }
+
+        button:active {
+            transform: translateY(-1px);
+        }
+
+        /* Back to Dashboard Link */
+        .back-link {
+            margin-top: 25px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #ff9a9e;
+            transform: translateX(-4px);
+        }
+
+        /* Responsive Settings */
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+
+            .profile-container {
+                padding: 35px 20px;
+            }
+
+            .profile-name {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* --- Mobile View (Phones) --- */
+        @media (max-width: 600px) {
+
+            .admin-layout {
+                flex-direction: column;
+            }
+
+            .btn-upload {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* --- Tablet View --- */
+        @media (min-width: 601px) and (max-width: 1024px) {}
+
+        /* --- Desktop View (Large Screens) --- */
+        @media (min-width: 1025px) {}
+    </style>
+</head>
+
+<body>
+    <div class="profile-container">
+        <img src="https://ui-avatars.com/api/?name=Student&background=ff9a9e&color=2c3e50" alt="User Avatar"
+            class="profile-avatar" id="profileAvatar" />
+
+        <div class="profile-name" id="profileName">Student Name</div>
+        <div class="profile-email" id="profileEmail">student@example.com</div>
+
+        <div class="info-group">
+            <label class="info-label" for="phone">📱 Phone Number</label>
+            <div class="info-value" id="phone">Not set</div>
+        </div>
+
+        <div class="info-group">
+            <label class="info-label" for="address">📍 Address</label>
+            <div class="info-value" id="address">Not set</div>
+        </div>
+
+        <button onclick="window.location.href='editprofile.html'">Edit Profile</button>
+        <br>
+        <a href="user.html" class="back-link">← Back to Dashboard</a>
+    </div>
+
+    <script>
+        // 1. లాగిన్ అయిన 'user' ఆబ్జెక్ట్ లేదా నార్మల్ కీస్ నుండి డేటాను చెక్ చేస్తున్నాం
+        const loggedInUser = localStorage.getItem('user');
+
+        let name = 'Student Name';
+        let email = 'student@example.com';
+        let phone = 'Not set';
+        let address = 'Not set';
+        let avatar = null;
+
+        if (loggedInUser) {
+            const userData = JSON.parse(loggedInUser);
+            name = userData.name || userData.username || name;
+            email = userData.email || email;
+            phone = userData.phone || phone;
+            address = userData.address || address;
+            avatar = userData.avatar || null;
+        }
+
+        // 2. ఒకవేళ యూజర్ ప్రొఫైల్ ఎడిట్ చేసి విడిగా సేవ్ చేసుకుంటే ఆ వాల్యూస్ ని ప్రాధాన్యత ఇస్తాం
+        name = localStorage.getItem('dmcp_registeredName') || name;
+        email = localStorage.getItem('dmcp_registeredEmail') || email;
+        phone = localStorage.getItem('dmcp_phone') || phone;
+        address = localStorage.getItem('dmcp_address') || address;
+        avatar = localStorage.getItem('dmcp_avatar') || avatar;
+
+        // 3. UI లోకి డేటాను పంపడం
+        document.getElementById('profileName').textContent = name;
+        document.getElementById('profileEmail').textContent = email;
+        document.getElementById('phone').textContent = phone;
+        document.getElementById('address').textContent = address;
+
+        // 4. అవతార్ ఇమేజ్ సెట్టింగ్
+        const profileAvatar = document.getElementById('profileAvatar');
+        if (avatar && avatar.trim() !== "") {
+            profileAvatar.src = avatar;
+        } else {
+            profileAvatar.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=ff9a9e&color=2c3e50&size=120&bold=true`;
+        }
+    </script>
+</body>
+
+</html>

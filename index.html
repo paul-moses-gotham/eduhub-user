@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EduHub - All Subjects Portal</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: url('https://static.vecteezy.com/system/resources/previews/001/937/697/original/online-education-application-learning-worldwide-on-computer-mobile-website-background-social-distance-concept-the-classroom-training-course-library-illustration-flat-vector.jpg') no-repeat center center/cover;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+        }
+
+        .navbar {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .navbar ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar ul li a:hover {
+            color: #ffd700;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 60px 40px;
+            max-width: 650px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            margin-top: 140px;
+            animation: fadeIn 1s ease;
+        }
+
+        .container h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+            color: #ffd700;
+        }
+
+        .container h2 {
+            font-size: 22px;
+            margin-bottom: 35px;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        .submit {
+            padding: 14px 35px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(118, 75, 162, 0.4);
+        }
+
+        .submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(118, 75, 162, 0.6);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container h1 {
+                font-size: 38px;
+            }
+
+            .container h2 {
+                font-size: 18px;
+            }
+
+            .navbar ul {
+                gap: 20px;
+            }
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            font-size: 0.9rem;
+            margin-top: auto;
+            width: 100%;
+        }
+
+        /* --- Mobile View (Phones) --- */
+        @media (max-width: 600px) {
+
+            .admin-layout {
+                flex-direction: column;
+            }
+
+            .btn-upload {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* --- Tablet View --- */
+        @media (min-width: 601px) and (max-width: 1024px) {}
+
+        /* --- Desktop View (Large Screens) --- */
+        @media (min-width: 1025px) {}
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="UHome.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>EduHub Portal</h1>
+        <h2>The Ultimate Engineering & Diploma Learning Space<br><span style="font-size: 16px; opacity: 0.9;">All
+                Branches • All Subjects • One Platform</span></h2>
+        <button class="submit" onclick="window.location.href='register.html'">Join Now</button>
+    </div>
+
+    <footer>
+        <p>© 2026 EduHub Portal. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Profile - DMPC</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Container */
+        .edit-container {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 28px;
+            padding: 45px 35px;
+            max-width: 460px;
+            width: 100%;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 30px;
+            font-weight: 700;
+            font-size: 1.8rem;
+            letter-spacing: 0.5px;
+            background: linear-gradient(135deg, #fff, #ff9a9e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Avatar Preview with Glow */
+        .avatar-preview {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #ff9a9e;
+            margin: 0 auto 25px;
+            box-shadow: 0 8px 25px rgba(255, 154, 158, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            display: block;
+        }
+
+        /* Labels styling */
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #ff9a9e;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: left;
+            padding-left: 4px;
+        }
+
+        /* Styled Input Fields */
+        input[type="text"],
+        input[type="tel"],
+        textarea,
+        input[type="file"] {
+            width: 100%;
+            padding: 14px 18px;
+            margin-bottom: 22px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.04);
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 500;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            resize: none;
+            transition: all 0.3s ease;
+        }
+
+        /* File input specific styling padding fix */
+        input[type="file"] {
+            padding: 10px 12px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        /* Focus state for Inputs (No more black text!) */
+        input[type="text"]:focus,
+        input[type="tel"]:focus,
+        textarea:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 154, 158, 0.4);
+            box-shadow: 0 0 15px rgba(255, 154, 158, 0.15), inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            outline: none;
+            color: #fff;
+        }
+
+        /* Premium Save Button */
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            color: #2c3e50;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 6px 20px rgba(255, 154, 158, 0.3);
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #fff, #ff9a9e);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 154, 158, 0.5);
+        }
+
+        button:active {
+            transform: translateY(-1px);
+        }
+
+        /* Back link styling */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 25px;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #ff9a9e;
+            transform: translateX(-4px);
+        }
+
+        /* Responsive Settings */
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+
+            .edit-container {
+                padding: 35px 20px;
+            }
+        }
+
+        /* --- Mobile View (Phones) --- */
+        @media (max-width: 600px) {
+
+            .admin-layout {
+                flex-direction: column;
+            }
+
+            .btn-upload {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* --- Tablet View --- */
+        @media (min-width: 601px) and (max-width: 1024px) {}
+
+        /* --- Desktop View (Large Screens) --- */
+        @media (min-width: 1025px) {}
+    </style>
+</head>
+
+<body>
+    <div class="edit-container">
+        <h2>Edit Profile</h2>
+
+        <img src="https://ui-avatars.com/api/?name=Student&background=ff9a9e&color=2c3e50" alt="Avatar Preview"
+            id="avatarPreview" class="avatar-preview" />
+
+        <form id="editProfileForm">
+            <label for="avatarInput">📸 Change Profile Photo</label>
+            <input type="file" id="avatarInput" accept="image/*" />
+
+            <label for="name">👤 Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required />
+
+            <label for="phone">📱 Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" />
+
+            <label for="address">📍 Address</label>
+            <textarea id="address" name="address" rows="3" placeholder="Enter your address"></textarea>
+
+            <button type="submit">Save Changes</button>
+        </form>
+
+        <a href="profile.html" class="back-link">← Back to Profile</a>
+    </div>
+
+    <script>
+        // DOM Elements
+        const nameInput = document.getElementById('name');
+        const phoneInput = document.getElementById('phone');
+        const addressInput = document.getElementById('address');
+        const avatarPreview = document.getElementById('avatarPreview');
+        const avatarInput = document.getElementById('avatarInput');
+
+        // 1. Load saved data from localStorage on Page Load
+        const savedName = localStorage.getItem('dmcp_registeredName') || '';
+        nameInput.value = savedName;
+        phoneInput.value = localStorage.getItem('dmcp_phone') || '';
+        addressInput.value = localStorage.getItem('dmcp_address') || '';
+
+        // Load Avatar or fallback to Name Initial Avatar
+        const savedAvatar = localStorage.getItem('dmcp_avatar');
+        if (savedAvatar && savedAvatar.trim() !== "") {
+            avatarPreview.src = savedAvatar;
+        } else {
+            const displayName = savedName ? savedName : 'Student';
+            avatarPreview.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=ff9a9e&color=2c3e50&size=120&bold=true`;
+        }
+
+        // 2. Preview selected image instantly before saving
+        avatarInput.addEventListener('change', () => {
+            const file = avatarInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    avatarPreview.src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // 3. Form Submit & Save Data to LocalStorage
+        document.getElementById('editProfileForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Save text inputs
+            localStorage.setItem('dmcp_registeredName', nameInput.value.trim());
+            localStorage.setItem('dmcp_phone', phoneInput.value.trim());
+            localStorage.setItem('dmcp_address', addressInput.value.trim());
+
+            // Check and Save avatar file if a new file is uploaded
+            const file = avatarInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    localStorage.setItem('dmcp_avatar', e.target.result);
+                    alert('Profile updated successfully! 🎉');
+                    window.location.href = 'profile.html';
+                }
+                reader.readAsDataURL(file);
+            } else {
+                alert('Profile updated successfully! 🎉');
+                window.location.href = 'profile.html';
+            }
+        });
+    </script>
+</body>
+
+</html>

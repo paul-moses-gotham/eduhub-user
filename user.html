@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Dashboard - EduHub</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            width: 250px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+            padding: 40px 20px;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 5px 0 25px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 40px;
+            font-weight: 700;
+            text-align: center;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #ffd700, #ff9a9e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 12px rgba(255, 215, 0, 0.2);
+        }
+
+        .sidebar a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            margin: 10px 0;
+            font-weight: 500;
+            padding: 12px 20px;
+            border-radius: 14px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .sidebar a.active,
+        .sidebar a:hover {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 154, 158, 0.1));
+            color: #ffd700;
+            padding-left: 25px;
+            border-left: 4px solid #ffd700;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.1);
+        }
+
+        /* Main content Styling */
+        .main {
+            flex: 1;
+            padding: 50px 60px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* Top Header / Profile area */
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+            width: 100%;
+        }
+
+        .welcome-text-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .welcome {
+            font-size: 2.6rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #fff, #a1c4fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .branch-badge {
+            font-size: 1rem;
+            color: #ffd700;
+            font-weight: 600;
+            background: rgba(255, 215, 0, 0.1);
+            padding: 4px 14px;
+            border-radius: 20px;
+            width: fit-content;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 20px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .profile:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            border-color: rgba(255, 215, 0, 0.4);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.15);
+        }
+
+        .profile img {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ffd700;
+        }
+
+        .profile span {
+            font-weight: 600;
+            color: #fff;
+            font-size: 0.95rem;
+        }
+
+        /* Modules Grid Layout */
+        .modules {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 35px;
+            max-width: 900px;
+        }
+
+        .module {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            cursor: pointer;
+        }
+
+        .module::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(161, 196, 253, 0.1));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .module:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 215, 0, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 25px rgba(255, 215, 0, 0.15);
+        }
+
+        .module:hover::before {
+            opacity: 1;
+        }
+
+        .module-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .module h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+
+        .module button {
+            position: relative;
+            z-index: 2;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #ffd700, #fad0c4);
+            color: #2c3e50;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .module:hover button {
+            background: linear-gradient(135deg, #fff, #ffd700);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5);
+            transform: scale(1.03);
+        }
+
+        /* Logout button */
+        .logout-btn {
+            margin-top: auto;
+            padding: 14px 0;
+            background: rgba(255, 111, 111, 0.15);
+            border: 1px solid rgba(255, 111, 111, 0.3);
+            border-radius: 16px;
+            color: #ff6f6f;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: #ff6f6f;
+            color: white;
+            box-shadow: 0 6px 20px rgba(255, 111, 111, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Layout Optimization */
+        @media (max-width: 900px) {
+            body {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                overflow-x: auto;
+                padding: 15px 20px;
+                height: 70px;
+            }
+
+            .sidebar h2 {
+                margin-bottom: 0;
+                font-size: 1.4rem;
+            }
+
+            .sidebar-links {
+                display: flex;
+                gap: 10px;
+            }
+
+            .sidebar a {
+                margin: 0;
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+
+            .sidebar .logout-btn {
+                display: none;
+            }
+
+            .main {
+                padding: 30px 20px;
+            }
+
+            .header-container {
+                flex-direction: column-reverse;
+                align-items: flex-start;
+                gap: 20px;
+                margin-top: 20px;
+                margin-bottom: 30px;
+            }
+
+            .profile {
+                align-self: flex-end;
+            }
+
+            .welcome {
+                font-size: 2rem;
+            }
+        }
+
+        /* --- Mobile View (Phones) --- */
+        @media (max-width: 600px) {
+
+            .admin-layout {
+                flex-direction: column;
+            }
+
+            .btn-upload {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* --- Tablet View --- */
+        @media (min-width: 601px) and (max-width: 1024px) {}
+
+        /* --- Desktop View (Large Screens) --- */
+        @media (min-width: 1025px) {}
+    </style>
+</head>
+
+<body>
+    <nav class="sidebar">
+        <h2>EduHub</h2>
+        <div class="sidebar-links" style="width: 100%;">
+            <a href="user.html" class="active">🏠 Dashboard</a>
+            <a href="profile.html">👤 Profile</a>
+        </div>
+        <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+    </nav>
+
+    <div class="main">
+        <div class="header-container">
+            <div class="welcome-text-group">
+                <h1 class="welcome">Welcome, <span id="welcomeName">Student</span>!</h1>
+                <p id="userBranchDisplay" class="branch-badge"></p>
+            </div>
+
+            <div class="profile" onclick="window.location.href='profile.html'">
+                <img id="profileAvatar" src="https://i.pravatar.cc/40" alt="User Avatar" />
+                <span id="userName">Student</span>
+            </div>
+        </div>
+
+        <div class="modules">
+            <div class="module" onclick="window.location.href='c20.html'">
+                <span class="module-icon">📘</span>
+                <h2>C-20</h2>
+                <button>Explore</button>
+            </div>
+            <div class="module" onclick="window.location.href='c23.html'">
+                <span class="module-icon">📙</span>
+                <h2>C-23</h2>
+                <button>Explore</button>
+            </div>
+            <div class="module" onclick="window.location.href='c26.html'">
+                <span class="module-icon">📙</span>
+                <h2>C-26</h2>
+                <button>Explore</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Production Live Render Cloud Backend API Base URI Location Endpoint
+        const RENDER_BACKEND_URL = "https://diploma-backend-07kx.onrender.com";
+
+        // Retrieving authentication parameters from local browser storage cache
+        const userName = localStorage.getItem('userName') || 'Student';
+        const userBranch = localStorage.getItem('userBranch') || '';
+
+        // Synchronize client interface typography parameters
+        document.getElementById('userName').textContent = userName;
+        document.getElementById('welcomeName').textContent = userName;
+
+        // Interactive dynamic branching evaluation structural view mapping
+        const branchDisplay = document.getElementById('userBranchDisplay');
+        if (userBranch) {
+            branchDisplay.textContent = "Branch: " + userBranch.toUpperCase();
+            branchDisplay.style.display = "inline-block";
+        } else {
+            branchDisplay.style.display = "none";
+        }
+
+        // System personalization profile asset avatar rendering process logic
+        const avatar = localStorage.getItem('eduhub_avatar');
+        const profileAvatar = document.getElementById('profileAvatar');
+        if (avatar) {
+            profileAvatar.src = avatar;
+        }
+
+        // Active context execution clean tracking session destruction logic
+        function logout() {
+            localStorage.clear();
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+
+</html>

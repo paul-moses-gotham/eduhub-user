@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About - DMPC</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            /* 🌟 High-quality premium educational/tech background layout design */
+            background: linear-gradient(rgba(15, 32, 39, 0.85), rgba(32, 58, 67, 0.85)),
+                url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1470&auto=format&fit=crop') no-repeat center center/cover;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+        }
+
+        .navbar {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .navbar ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar ul li a:hover {
+            color: #ffd700;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 50px 40px;
+            max-width: 850px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 120px;
+            margin-bottom: 40px;
+            animation: fadeIn 1s ease;
+        }
+
+        .container h1 {
+            font-size: 38px;
+            margin-bottom: 20px;
+            color: #ffd700;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+        }
+
+        .container p {
+            font-size: 16px;
+            line-height: 1.7;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+            margin-bottom: 25px;
+            text-align: justify;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 100%));
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .feature-item {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 14px;
+            font-weight: 500;
+            color: #a1c4fd;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container h1 {
+                font-size: 28px;
+            }
+
+            .container p {
+                font-size: 14px;
+                text-align: center;
+            }
+
+            .navbar ul {
+                gap: 20px;
+            }
+        }
+
+        /* --- Mobile View (Phones) --- */
+        @media (max-width: 600px) {
+
+            .admin-layout {
+                flex-direction: column;
+            }
+
+            .btn-upload {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* --- Tablet View --- */
+        @media (min-width: 601px) and (max-width: 1024px) {}
+
+        /* --- Desktop View (Large Screens) --- */
+        @media (min-width: 1025px) {}
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="UHome.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>About DMPC</h1>
+        <p>
+            Welcome to <b>DMPC</b>, the ultimate academic resource hub designed exclusively for Diploma students. While
+            our journey began with a focus on core foundational subjects like Mathematics, Physics, and Chemistry, we
+            have expanded into a comprehensive learning platform that spans multiple engineering branches, including
+            Computer Engineering (CME), Electronics & Communication (ECE), Electrical & Electronics (EEE), Mechanical
+            (MECH), and Civil Engineering.
+        </p>
+        <p>
+            Our mission is to simplify diploma education by breaking down complex engineering curriculum into
+            high-quality, structured learning content. DMPC delivers academic solutions tailored to your academic needs,
+            offering curated chapter-wise notes, organized Previous Year Question Papers (PYQs), dynamic curriculum
+            roadmaps, and integrated educational video tutorials. Whether you are aiming to top your semesters, clear
+            tricky backlogs, or strengthen your core technical fundamentals, DMPC serves as your trusted digital
+            companion toward academic excellence.
+        </p>
+
+        <div class="features-grid">
+            <div class="feature-item">📚 Comprehensive Branch-Wise Academic Notes</div>
+            <div class="feature-item">📝 Structured Previous Year Questions (PYQs) & Schemes</div>
+            <div class="feature-item">🎥 Curated Video Lectures & YouTube Resource Integration</div>
+            <div class="feature-item">🚀 Built to Support Semesters & Entrance Exam Preparation</div>
+        </div>
+    </div>
+</body>
+
+</html>
